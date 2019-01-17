@@ -50,7 +50,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
         String appName = params[1];
         String downloadUrl = params[2];
 
-        String fileName = BASE + appName + versionCode + SUFFIX;
+        String fileName = BASE + appName.replace(".", "_") + "_" + versionCode + SUFFIX;
 
         Log.d(TAG, "checkVersion : doInBackground : versionCode = " + versionCode);
         Log.d(TAG, "checkVersion : doInBackground : appName = " + appName);
