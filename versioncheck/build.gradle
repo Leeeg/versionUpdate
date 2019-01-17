@@ -1,0 +1,47 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+//根据Library名称生存jar包到build目录下
+task makeJar(type: Copy) {
+    def name = project.name //Library名称
+    delete 'libs/' + name + '.jar' //删除之前的旧jar包
+    from('build/intermediates/packaged-classes/release/') //从这个目录下取出默认jar包
+    into('libs/') //将jar包输出到指定目录下
+    include('classes.jar')
+    rename('classes.jar', name + '.jar') //自定义jar包的名字
+}
+makeJar.dependsOn(build)
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+}
