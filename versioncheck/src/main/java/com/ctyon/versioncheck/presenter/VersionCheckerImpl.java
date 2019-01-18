@@ -1,6 +1,7 @@
 package com.ctyon.versioncheck.presenter;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.Keep;
 import android.util.Log;
 
 import com.ctyon.versioncheck.CtyonVersionChecker;

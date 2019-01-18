@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements CheckerCallback {
         versionRequest.setCompanyName("ctyon");
         versionRequest.setDeviceMode("GT11");
         versionRequest.setImei("imei1234");
-        versionRequest.setVersionCode("20190117");
+        versionRequest.setVersionCode("20190116");
 
         CtyonVersionChecker.getInstance().init(this).setCheckerCallback(this);
 

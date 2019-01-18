@@ -1,5 +1,7 @@
 package com.ctyon.versioncheck.util;
 
+import android.support.annotation.Keep;
+
 import com.google.gson.Gson;
 
 /**
@@ -7,6 +9,7 @@ import com.google.gson.Gson;
  * Describe:
  * Coder: lee
  */
+@Keep
 public class GsonInner {
 
     private static Gson gson;

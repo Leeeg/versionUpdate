@@ -2,6 +2,7 @@ package com.ctyon.versioncheck;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -34,6 +35,7 @@ public class CtyonVersionChecker {
         void failed(String msg);
     }
 
+    @Keep
     public static CtyonVersionChecker getInstance() {
         return CtyonVersionCheckerHolder.instance;
     }
@@ -47,6 +49,7 @@ public class CtyonVersionChecker {
         this.presenter = new VersionCheckerImpl(callback);
     }
 
+    @Keep
     public CtyonVersionChecker init(Context context) {
         if (null == mContext) {
             this.mContext = context;
@@ -54,6 +57,7 @@ public class CtyonVersionChecker {
         return getInstance();
     }
 
+    @Keep
     public void doCheckVersion(VersionRequest versionRequest) {
         if (null == checkerCallback) {
             throw new RuntimeException("please set a valid CheckerCallback !");
@@ -70,6 +74,7 @@ public class CtyonVersionChecker {
         }
     }
 
+    @Keep
     public void setCheckerCallback(@NonNull CheckerCallback checkerCallback) {
         this.checkerCallback = checkerCallback;
     }
