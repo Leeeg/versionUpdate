@@ -76,7 +76,7 @@ public class VersionCheckerImpl implements VersionCheckerPresenter {
                         file.delete();
                         Log.d(TAG, "checkVersion : versionCallback : had deleted ! ");
                     }
-                    callback.success(" There is not new version !    requestVersion = " + versionOld + "  responseVersion = " + versionNow);
+                    callback.success(false, " There is not new version !    requestVersion = " + versionOld + "  responseVersion = " + versionNow);
                 }
             } catch (Exception e) {
                 Log.e(TAG, "checkVersion : versionCallback : failed ! ");
@@ -95,7 +95,7 @@ public class VersionCheckerImpl implements VersionCheckerPresenter {
         @Override
         public void success(String filePath) {
             Log.e(TAG, "checkVersion : downloadCallback : success ! ");
-            callback.success(filePath);
+            callback.success(true, filePath);
         }
 
         @Override

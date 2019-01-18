@@ -8,7 +8,7 @@ package com.ctyon.versioncheck.model;
 public abstract class Contain {
 
 //    public static final String VERSION_CHECK_URL = "http://47.106.254.237:8089/api/checkVersion";
-    public static final String VERSION_CHECK_URL = "http://192.168.0.13:8089/api/checkVersion";
+    public static final String VERSION_CHECK_URL = "http://192.168.0.16:8089/api/checkVersion";
 
     public static final String BASE = "ctyon_";
     public static final String SUFFIX = ".apk";

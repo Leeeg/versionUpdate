@@ -157,7 +157,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
     protected void onProgressUpdate(Integer... progress) {
         super.onProgressUpdate(progress);
         float pro = (float) progress[0] / (float) progress[1] * 100;
-        Log.d(TAG, "max= " + progress[0] + ", progress= " + progress[1] + "    >>> " + pro + "%");
+        Log.d(TAG, "progress= " + progress[0] + ", max= " + progress[1] + "    >>> " + pro + "%");
     }
 
 }

@@ -30,7 +30,7 @@ public class CtyonVersionChecker {
     private boolean isChecking;
 
     public interface Callback {
-        void success(String filePath);
+        void success(boolean installAble, String filePath);
 
         void failed(String msg);
     }
@@ -68,7 +68,7 @@ public class CtyonVersionChecker {
         if (!isChecking) {
             isChecking = true;
             presenter.checkVersion(versionRequest);
-        }else {
+        } else {
             Log.d(TAG, "is busy for checking or downloading");
             checkerCallback.onVersionCheckError("the CtyonVersionChecker is busy for checking or downloading");
         }
@@ -85,9 +85,9 @@ public class CtyonVersionChecker {
 
     private final Callback callback = new Callback() {
         @Override
-        public void success(String filePath) {
+        public void success(boolean installAble, String filePath) {
             Log.d(TAG, "check or download apk success : " + filePath);
-            checkerCallback.onVersionCheckSuccess(filePath);
+            checkerCallback.onVersionCheckSuccess(installAble, filePath);
             isChecking = false;
         }
 

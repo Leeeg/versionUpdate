@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity implements CheckerCallback {
         super.onResume();
 
         VersionRequest versionRequest = new VersionRequest();
-        versionRequest.setAppName("com.ctchat.sample");
+        versionRequest.setAppName("com.ctyon.icp.intercom");
         versionRequest.setCompanyName("ctyon");
         versionRequest.setDeviceMode("GT11");
         versionRequest.setImei("imei1234");
-        versionRequest.setVersionCode("20190116");
+        versionRequest.setVersionCode("105");
 
         CtyonVersionChecker.getInstance().init(this).setCheckerCallback(this);
 
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements CheckerCallback {
     }
 
     @Override
-    public void onVersionCheckSuccess(String filePath) {
+    public void onVersionCheckSuccess(boolean installAble, String filePath) {
 
         Log.d("Checker_MainActivity", "onVersionCheckSuccess : " + filePath);
     }
