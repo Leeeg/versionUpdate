@@ -50,7 +50,6 @@ public class CtyonVersionChecker {
     public CtyonVersionChecker init(Context context) {
         if (null == mContext) {
             this.mContext = context;
-
         }
         return getInstance();
     }
@@ -75,14 +74,14 @@ public class CtyonVersionChecker {
         this.checkerCallback = checkerCallback;
     }
 
-    public Context getmContext() {
+    public Context getContext() {
         return mContext;
     }
 
     private final Callback callback = new Callback() {
         @Override
         public void success(String filePath) {
-            Log.d(TAG, "check or download apk success, callback the filePath : " + filePath);
+            Log.d(TAG, "check or download apk success : " + filePath);
             checkerCallback.onVersionCheckSuccess(filePath);
             isChecking = false;
         }

@@ -4,11 +4,15 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.ctyon.versioncheck.CtyonVersionChecker;
+import com.ctyon.versioncheck.model.Contain;
 import com.ctyon.versioncheck.model.VersionRequest;
 import com.ctyon.versioncheck.model.VersionResponse;
 import com.ctyon.versioncheck.util.CheckVersionAsyncTask;
 import com.ctyon.versioncheck.util.DownloadAsyncTask;
+import com.ctyon.versioncheck.util.FileUtil;
 import com.ctyon.versioncheck.util.GsonInner;
+
+import java.io.File;
 
 /**
  * CreateDate：19-1-16 on 下午3:53
@@ -60,9 +64,20 @@ public class VersionCheckerImpl implements VersionCheckerPresenter {
                 int versionNow = Integer.valueOf(response.getVersionCode());
                 Log.d(TAG, "checkVersion : versionCallback : success ！  " + "  versionOld = " + versionOld + "  versionNow = " + versionNow);
                 if (versionOld < versionNow) {
+                    Log.d(TAG, "checkVersion : versionCallback :  ------>>>   go to download ! ");
                     download(response);
+                } else {
+                    String fileName = Contain.BASE + response.getAppName().replace(".", "_") + "_" + response.getVersionCode() + Contain.SUFFIX;
+                    Log.d(TAG, "checkVersion : versionCallback : ------>>>   try to  delete old file if exit !   fileName = " + fileName);
+                    File file = new File(FileUtil.getDownFileDir(), fileName);
+                    Log.d(TAG, "checkVersion : versionCallback :  exit = " + file.exists());
+                    if (file.exists()){
+                        file.delete();
+                        Log.d(TAG, "checkVersion : versionCallback : had deleted ! ");
+                    }
+                    callback.success(" There is not new version !    requestVersion = " + versionOld + "  responseVersion = " + versionNow);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 Log.e(TAG, "checkVersion : versionCallback : failed ! ");
                 callback.failed("checkVersion ERROR : " + e);
             }

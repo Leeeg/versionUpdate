@@ -26,13 +26,12 @@ public class CheckerSharePreference {
         return getSharePreferences().getInt(PHONE_INFO_LAST_DOWNLOAD_INDEX, 0);
     }
 
-
     public static void clear() {
         getSharePreferences().edit().clear().apply();
     }
 
     private static SharedPreferences getSharePreferences() {
-        return CtyonVersionChecker.getInstance().getmContext().getSharedPreferences(PHONE_INFO_FILE_NAME, Context.MODE_PRIVATE);
+        return CtyonVersionChecker.getInstance().getContext().getSharedPreferences(PHONE_INFO_FILE_NAME, Context.MODE_PRIVATE);
     }
 
 
