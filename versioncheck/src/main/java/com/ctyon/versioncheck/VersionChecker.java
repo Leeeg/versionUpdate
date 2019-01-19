@@ -7,7 +7,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.ctyon.versioncheck.callback.CheckerCallback;
-import com.ctyon.versioncheck.model.Contain;
+import com.ctyon.versioncheck.callback.DownloadCallback;
+import com.ctyon.versioncheck.util.Contain;
 import com.ctyon.versioncheck.model.VersionRequest;
 import com.ctyon.versioncheck.presenter.VersionCheckerImpl;
 import com.ctyon.versioncheck.presenter.VersionCheckerPresenter;
@@ -80,15 +81,6 @@ public class VersionChecker {
         }
     }
 
-    @Keep
-    public void setCheckerCallback(@NonNull CheckerCallback checkerCallback) {
-        this.checkerCallback = checkerCallback;
-    }
-
-    public Context getContext() {
-        return mContext;
-    }
-
     private final Callback callback = new Callback() {
         @Override
         public void success(boolean installAble, String filePath) {
@@ -104,6 +96,20 @@ public class VersionChecker {
             isChecking = false;
         }
     };
+
+    @Keep
+    public void setCheckerCallback(@NonNull CheckerCallback checkerCallback) {
+        this.checkerCallback = checkerCallback;
+    }
+
+    @Keep
+    public void setDownloadCallback(DownloadCallback downloadCallback) {
+        this.presenter.setDownloadCallback(downloadCallback);
+    }
+
+    public Context getContext() {
+        return mContext;
+    }
 
     public Contain getContain() {
         return contain;

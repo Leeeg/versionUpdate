@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ctyon.versioncheck.VersionChecker;
-import com.ctyon.versioncheck.model.Contain;
 import com.ctyon.versioncheck.model.Res;
 import com.ctyon.versioncheck.model.VersionResponse;
 import com.ctyon.versioncheck.presenter.VersionCheckerImpl;
@@ -29,14 +28,14 @@ public class CheckVersionAsyncTask extends AsyncTask<String, Integer, VersionRes
 
     private static final String TAG = "Checker_CheckVersionAsyncTask";
 
-    private VersionCheckerImpl.VersionCallback versionCallback;
+    private VersionCheckerImpl.VersionResult VersionResult;
 
-    public static void doExecute(String param, VersionCheckerImpl.VersionCallback versionCallback) {
-        new CheckVersionAsyncTask(versionCallback).execute(param);
+    public static void doExecute(String param, VersionCheckerImpl.VersionResult VersionResult) {
+        new CheckVersionAsyncTask(VersionResult).execute(param);
     }
 
-    public CheckVersionAsyncTask(VersionCheckerImpl.VersionCallback versionCallback) {
-        this.versionCallback = versionCallback;
+    public CheckVersionAsyncTask(VersionCheckerImpl.VersionResult VersionResult) {
+        this.VersionResult = VersionResult;
     }
 
     @Override
@@ -115,10 +114,10 @@ public class CheckVersionAsyncTask extends AsyncTask<String, Integer, VersionRes
         super.onPostExecute(response);
         if (null != response){
             Log.d(TAG, "checkVersion : doInBackground : response = " + response.toString());
-            versionCallback.success(response);
+            VersionResult.success(response);
         }else {
             Log.e(TAG, "checkVersion : doInBackground : the response is NULL ！");
-            versionCallback.failed("checkVersion failed !  the response is NULL ！   find the ERROR message by tag : " + TAG);
+            VersionResult.failed("checkVersion failed !  the response is NULL ！   find the ERROR message by tag : " + TAG);
         }
     }
 

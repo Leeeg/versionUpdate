@@ -1,5 +1,6 @@
 package com.ctyon.versioncheck.presenter;
 
+import com.ctyon.versioncheck.callback.DownloadCallback;
 import com.ctyon.versioncheck.model.VersionRequest;
 import com.ctyon.versioncheck.model.VersionResponse;
 
@@ -13,5 +14,7 @@ public interface VersionCheckerPresenter {
     void checkVersion(VersionRequest versionRequest);
 
     void download(VersionResponse versionResponse);
+
+    void setDownloadCallback(DownloadCallback downloadCallback);
 
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.ctyon.versioncheck.VersionChecker;
 import com.ctyon.versioncheck.callback.CheckerCallback;
+import com.ctyon.versioncheck.callback.DownloadCallback;
 import com.ctyon.versioncheck.model.VersionRequest;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,44 +18,70 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initVersionChacker();
+        addCallback();
 
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
+        checkVersion();
+    }
 
+    private void initVersionChacker() {
+        String VERSION_CHECK_URL = "http://47.97.160.32:8089/api/checkVersion";
+        VersionChecker.getInstance().init(this, "ctyon", VERSION_CHECK_URL);
+    }
 
-        String VERSION_CHECK_URL = "http://192.168.0.16:8089/api/checkVersion";
+    private void addCallback(){
+        VersionChecker.getInstance().setCheckerCallback(new CheckerCallback() {
+                    @Override
+                    public void onVersionCheckSuccess(boolean installAble, String msg) {
+                        if (installAble) {
+                            Log.d("Checker_MainActivity", "CheckerCallback : filePath = " + msg);
+                        } else {
+                            Log.d("Checker_MainActivity", "CheckerCallback : message = " + msg);
+                        }
+                    }
+
+                    @Override
+                    public void onVersionCheckError(String msg) {
+                        Log.d("Checker_MainActivity", "CheckerCallback : " + msg);
+                    }
+                });
+
+        VersionChecker.getInstance().setDownloadCallback(new DownloadCallback() {
+            @Override
+            public void onPreExecute() {
+                Log.d("Checker_MainActivity", "DownloadCallback : onPreExecute ");
+            }
+
+            @Override
+            public void onPostExecute(int result) {
+                Log.d("Checker_MainActivity", "DownloadCallback : result = " + result);
+            }
+
+            @Override
+            public void onProgressUpdate(int contentLength, int rev, float progress) {
+                Log.d("Checker_MainActivity", "DownloadCallback : contentLength = " + contentLength + "  rev = " + rev + "   pro = " + progress);
+            }
+        });
+    }
+
+    private void checkVersion() {
 
         VersionRequest versionRequest = new VersionRequest();
         versionRequest.setAppName("com.ctyon.intercom");
         versionRequest.setCompanyName("ctyon");
         versionRequest.setDeviceMode("GT11");
         versionRequest.setImei("imei1234");
-        versionRequest.setVersionCode("105");
-
-        VersionChecker.getInstance()
-                .init(this, "ctyon", VERSION_CHECK_URL)
-                .setCheckerCallback(new CheckerCallback() {
-                    @Override
-                    public void onVersionCheckSuccess(boolean installAble, String msg) {
-                        if (installAble) {
-                            Log.d("Checker_MainActivity", "onVersionCheckSuccess : filePath = " + msg);
-                        } else {
-                            Log.e("Checker_MainActivity", "onVersionCheckSuccess : message = " + msg);
-                        }
-                    }
-
-                    @Override
-                    public void onVersionCheckError(String msg) {
-
-                        Log.e("Checker_MainActivity", "onVersionCheckError : " + msg);
-                    }
-                });
+        versionRequest.setVersionCode("1901121");
 
         VersionChecker.getInstance().doCheckVersion(versionRequest);
+
     }
+
+
 
 }

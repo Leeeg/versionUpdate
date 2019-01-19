@@ -1,4 +1,4 @@
-package com.ctyon.versioncheck.model;
+package com.ctyon.versioncheck.util;
 
 /**
  * CreateDate：19-1-14 on 下午2:13

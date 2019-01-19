@@ -33,14 +33,14 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
     private File file;
     private RandomAccessFile raFile;
 
-    private VersionCheckerImpl.DownloadCallback downloadCallback;
+    private VersionCheckerImpl.DownloadResult downloadResult;
 
-    public static void doExecute(VersionCheckerImpl.DownloadCallback downloadCallback, String... params) {
-        new DownloadAsyncTask(downloadCallback).execute(params);
+    public static void doExecute(VersionCheckerImpl.DownloadResult downloadResult, String... params) {
+        new DownloadAsyncTask(downloadResult).execute(params);
     }
 
-    public DownloadAsyncTask(VersionCheckerImpl.DownloadCallback downloadCallback) {
-        this.downloadCallback = downloadCallback;
+    public DownloadAsyncTask(VersionCheckerImpl.DownloadResult downloadResult) {
+        this.downloadResult = downloadResult;
     }
 
     @Override
@@ -150,11 +150,18 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
     protected void onPostExecute(Integer result) {
         super.onPostExecute(result);
         Log.d(TAG, "onPostExecute : result = " + result);
+        downloadResult.onPostExecute(result);
         if (result == ERROR) {
-            downloadCallback.failed("download failed !   find the ERROR message by tag : " + TAG);
+            downloadResult.failed("download failed !   find the ERROR message by tag : " + TAG);
         } else {
-            downloadCallback.success(file.getPath());
+            downloadResult.success(file.getPath());
         }
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        downloadResult.onPreExecute();
     }
 
     @Override
@@ -162,6 +169,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
         super.onProgressUpdate(progress);
         float pro = (float) progress[0] / (float) progress[1] * 100;
         Log.d(TAG, "progress= " + progress[0] + ", max= " + progress[1] + "    >>> " + pro + "%");
+        downloadResult.onProgressUpdate(progress[1], progress[0], pro);
     }
 
 }

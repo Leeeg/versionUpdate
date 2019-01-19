@@ -17,8 +17,8 @@ android {
 
     buildTypes {
         release {
-//            minifyEnabled true
-            minifyEnabled false
+            minifyEnabled true
+//            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -32,7 +32,7 @@ task makeJar(type: Copy) {
     from('build/intermediates/packaged-classes/release/') //从这个目录下取出默认jar包
     into('libs/') //将jar包输出到指定目录下
     include('classes.jar')
-    rename('classes.jar', name + "_V1.0.1" + '.jar') //自定义jar包的名字
+    rename('classes.jar', name + "_V1.0.3" + '.jar') //自定义jar包的名字
 }
 makeJar.dependsOn(build)
 
