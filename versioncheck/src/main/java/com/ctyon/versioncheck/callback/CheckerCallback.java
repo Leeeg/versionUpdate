@@ -7,7 +7,7 @@ package com.ctyon.versioncheck.callback;
  */
 public interface CheckerCallback {
 
-    void onVersionCheckSuccess(boolean installAble, String filePath);
+    void onVersionCheckSuccess(boolean installAble, String msg);
 
     void onVersionCheckError(String msg);
 

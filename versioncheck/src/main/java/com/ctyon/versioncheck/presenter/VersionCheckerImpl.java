@@ -1,10 +1,9 @@
 package com.ctyon.versioncheck.presenter;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.Keep;
 import android.util.Log;
 
-import com.ctyon.versioncheck.CtyonVersionChecker;
+import com.ctyon.versioncheck.VersionChecker;
 import com.ctyon.versioncheck.model.Contain;
 import com.ctyon.versioncheck.model.VersionRequest;
 import com.ctyon.versioncheck.model.VersionResponse;
@@ -25,11 +24,13 @@ public class VersionCheckerImpl implements VersionCheckerPresenter {
 
     private static final String TAG = "Checker_VersionCheckerImpl";
 
+    private static final String SUFFIX = ".apk";
+
     private VersionRequest request;
 
-    private CtyonVersionChecker.Callback callback;
+    private VersionChecker.Callback callback;
 
-    public VersionCheckerImpl(CtyonVersionChecker.Callback callback) {
+    public VersionCheckerImpl(VersionChecker.Callback callback) {
         this.callback = callback;
     }
 
@@ -68,7 +69,9 @@ public class VersionCheckerImpl implements VersionCheckerPresenter {
                     Log.d(TAG, "checkVersion : versionCallback :  ------>>>   go to download ! ");
                     download(response);
                 } else {
-                    String fileName = Contain.BASE + response.getAppName().replace(".", "_") + "_" + response.getVersionCode() + Contain.SUFFIX;
+                    String fileName = VersionChecker.getInstance().getContain().getBaseName() +
+                            response.getAppName().replace(".", "_") + "_" + response.getVersionCode() +
+                            SUFFIX;
                     Log.d(TAG, "checkVersion : versionCallback : ------>>>   try to  delete old file if exit !   fileName = " + fileName);
                     File file = new File(FileUtil.getDownFileDir(), fileName);
                     Log.d(TAG, "checkVersion : versionCallback :  exit = " + file.exists());

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.ctyon.versioncheck.callback.CheckerCallback;
+import com.ctyon.versioncheck.model.Contain;
 import com.ctyon.versioncheck.model.VersionRequest;
 import com.ctyon.versioncheck.presenter.VersionCheckerImpl;
 import com.ctyon.versioncheck.presenter.VersionCheckerPresenter;
@@ -17,7 +18,7 @@ import com.ctyon.versioncheck.presenter.VersionCheckerPresenter;
  * Coder: lee
  */
 @SuppressLint("LongLogTag")
-public class CtyonVersionChecker {
+public class VersionChecker {
 
     private static final String TAG = "Checker_CtyonVersionChecker";
 
@@ -29,6 +30,8 @@ public class CtyonVersionChecker {
 
     private boolean isChecking;
 
+    private Contain contain;
+
     public interface Callback {
         void success(boolean installAble, String filePath);
 
@@ -36,23 +39,26 @@ public class CtyonVersionChecker {
     }
 
     @Keep
-    public static CtyonVersionChecker getInstance() {
+    public static VersionChecker getInstance() {
         return CtyonVersionCheckerHolder.instance;
     }
 
     private static class CtyonVersionCheckerHolder {
-        private static final CtyonVersionChecker instance = new CtyonVersionChecker();
+        private static final VersionChecker instance = new VersionChecker();
     }
 
-    private CtyonVersionChecker() {
+    private VersionChecker() {
         Log.e(TAG, "init VersionCheckerPresenter !");
         this.presenter = new VersionCheckerImpl(callback);
     }
 
     @Keep
-    public CtyonVersionChecker init(Context context) {
+    public VersionChecker init(Context context, String baseName, String url) {
         if (null == mContext) {
             this.mContext = context;
+        }
+        if (null == contain){
+            setContain(new Contain(baseName, url));
         }
         return getInstance();
     }
@@ -98,5 +104,13 @@ public class CtyonVersionChecker {
             isChecking = false;
         }
     };
+
+    public Contain getContain() {
+        return contain;
+    }
+
+    private void setContain(Contain contain) {
+        this.contain = contain;
+    }
 
 }

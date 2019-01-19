@@ -3,7 +3,7 @@ package com.ctyon.versioncheck.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.ctyon.versioncheck.CtyonVersionChecker;
+import com.ctyon.versioncheck.VersionChecker;
 
 
 public class CheckerSharePreference {
@@ -31,7 +31,7 @@ public class CheckerSharePreference {
     }
 
     private static SharedPreferences getSharePreferences() {
-        return CtyonVersionChecker.getInstance().getContext().getSharedPreferences(PHONE_INFO_FILE_NAME, Context.MODE_PRIVATE);
+        return VersionChecker.getInstance().getContext().getSharedPreferences(PHONE_INFO_FILE_NAME, Context.MODE_PRIVATE);
     }
 
 

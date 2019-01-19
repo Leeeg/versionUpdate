@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.ctyon.versioncheck.model.Contain;
+import com.ctyon.versioncheck.VersionChecker;
 import com.ctyon.versioncheck.presenter.VersionCheckerImpl;
 
 import java.io.File;
@@ -23,6 +23,8 @@ import java.net.URL;
 public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
 
     private static final String TAG = "Checker_DownloadAsyncTask";
+
+    private static final String SUFFIX = ".apk";
 
     private static final int ERROR = 0;
     private static final int SUCCESS = 1;
@@ -48,7 +50,9 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
         String appName = params[1];
         String downloadUrl = params[2];
 
-        String fileName = Contain.BASE + appName.replace(".", "_") + "_" + versionCode + Contain.SUFFIX;
+        String fileName = VersionChecker.getInstance().getContain().getBaseName() + "_" +
+                appName.replace(".", "_") + "_" + versionCode +
+                SUFFIX;
 
         Log.d(TAG, "checkVersion : doInBackground : versionCode = " + versionCode);
         Log.d(TAG, "checkVersion : doInBackground : appName = " + appName);

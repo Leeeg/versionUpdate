@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.ctyon.versioncheck.VersionChecker;
 import com.ctyon.versioncheck.model.Contain;
 import com.ctyon.versioncheck.model.Res;
 import com.ctyon.versioncheck.model.VersionResponse;
@@ -43,11 +44,12 @@ public class CheckVersionAsyncTask extends AsyncTask<String, Integer, VersionRes
         try {
 
             String params = strings[0];
-            Log.d(TAG, "checkVersion : doInBackground : path = " + Contain.VERSION_CHECK_URL);
+            String downloadPath = VersionChecker.getInstance().getContain().getUrl();
+            Log.d(TAG, "checkVersion : doInBackground : path = " + downloadPath);
             Log.d(TAG, "checkVersion : doInBackground : params = " + params);
 
             //建立连接
-            URL url = new URL(Contain.VERSION_CHECK_URL);
+            URL url = new URL(downloadPath);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             //设置参数

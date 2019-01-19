@@ -5,12 +5,22 @@ package com.ctyon.versioncheck.model;
  * Describe:
  * Coder: lee
  */
-public abstract class Contain {
+public class Contain {
 
-//    public static final String VERSION_CHECK_URL = "http://47.106.254.237:8089/api/checkVersion";
-    public static final String VERSION_CHECK_URL = "http://192.168.0.16:8089/api/checkVersion";
+    private final String url;
 
-    public static final String BASE = "ctyon_";
-    public static final String SUFFIX = ".apk";
+    private final String baseName;
 
+    public Contain(String baseName, String url) {
+        this.baseName = baseName;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getBaseName() {
+        return baseName;
+    }
 }
