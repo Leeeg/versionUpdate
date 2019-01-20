@@ -11,7 +11,7 @@ import android.os.Parcelable;
 public class VersionRequest implements Parcelable {
 
     /**
-     * APP名字（eg:Intercom）
+     * APP名字/包名（eg:com.ctyon.Intercom）
      */
     private String appName;
 
@@ -31,7 +31,7 @@ public class VersionRequest implements Parcelable {
     private String imei;
 
     /**
-     * 定制公司名（eg:baifutong）
+     * 定制名（eg:baifutong）
      */
     private String companyName;
 
