@@ -64,5 +64,5 @@
 -keepclassmembers class * {
     @android.support.annotation.Keep *;
 }
--keep class com.ctyon.versioncheck.model.** { *; }
--keep class com.ctyon.versioncheck.callback.** { *; }
+-keep class com.lee.versioncheck.model.** { *; }
+-keep class com.lee.versioncheck.callback.** { *; }
