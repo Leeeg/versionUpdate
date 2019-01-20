@@ -31,16 +31,16 @@ android {
 }
 
 // 项目引用的版本号，比如compile 'com.yanzhenjie:andserver:1.0.1'中的1.0.1就是这里配置的。
-version = "1.0.4"
+version = "1.0.5"
 
 //根据Library名称生存jar包到build目录下
 task makeJar(type: Copy) {
-    def name = project.name //Library名称
+    def name = project.name + "_" + version //Library名称
     delete 'libs/' + name + '.jar' //删除之前的旧jar包
     from('build/intermediates/packaged-classes/release/') //从这个目录下取出默认jar包
     into('libs/') //将jar包输出到指定目录下
     include('classes.jar')
-    rename('classes.jar', name + "_" + version + '.jar') //自定义jar包的名字
+    rename('classes.jar', name + '.jar') //自定义jar包的名字
 }
 makeJar.dependsOn(build)
 
@@ -65,7 +65,7 @@ task sourcesJar(type: Jar) {
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    // destinationDir = file("../javadoc/")
+//     destinationDir = file("../javadoc/")
     failOnError false // 忽略注释语法错误，如果用jdk1.8你的注释写的不规范就编译不过。
 }
 // 生成javaDoc的jar，不需要修改。
