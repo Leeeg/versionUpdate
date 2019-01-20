@@ -1,7 +1,7 @@
 # AppVersionCheck
 
 #### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
+{**library for android app to check update and download the apk file**}
 
 #### Software Architecture
 Software architecture description
@@ -30,7 +30,7 @@ Software architecture description
     }
 
     private void initVersionChacker() {
-        String VERSION_CHECK_URL = ""; // 检查更新的接口
+        String VERSION_CHECK_URL = ""; // your api of checkUodate
         VersionChecker.getInstance().init(this, "ctyon", VERSION_CHECK_URL);
     }
 
