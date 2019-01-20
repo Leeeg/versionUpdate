@@ -52,8 +52,8 @@ dependencies {
 }
 
 // 定义两个链接，下面会用到。
-def siteUrl = 'https://gitee.com/leeeg/AppVersionCheck' // 项目主页。
-def gitUrl = 'https://gitee.com/leeeg/AppVersionCheck.git' // Git仓库的url。
+def siteUrl = 'https://github.com/Leeeg/versionUpdate' // 项目主页。
+def gitUrl = 'https://github.com/Leeeg/versionUpdate.git' // Git仓库的url。
 
 // 生成jar包的task，不需要修改。
 task sourcesJar(type: Jar) {
