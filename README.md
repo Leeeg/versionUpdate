@@ -30,7 +30,7 @@ Software architecture description
     }
 
     private void initVersionChacker() {
-        String VERSION_CHECK_URL = "http://47.97.160.32:8089/api/checkVersion";
+        String VERSION_CHECK_URL = ""; // 检查更新的接口
         VersionChecker.getInstance().init(this, "ctyon", VERSION_CHECK_URL);
     }
 
