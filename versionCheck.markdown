@@ -6,20 +6,28 @@
 **library for android app to check update and download the apk file**
 
 #### Installation
-
-> implementation 'com.lee.versioncheck:versioncheck:1.0.5'
+project.gradle
+```
+maven {
+            url  "https://dl.bintray.com/leeeg/android"
+        }
+```
+app.gradle
+```
+implementation 'com.lee.versioncheck:versioncheck:1.0.5'
+```
 
 #### API
 1.初始化(**必要**，最好使用全局唯一Context且只初始化一次):
 > **VersionChecker init(Context context, String baseName, String url)**
-> 
+>
 > baseName ：下载后文件名的开头部分 （eg:baseName_appName_versionCode.apk）
 > url:用于检查更新的接口
 
 2.添加检查和下载结果回调：(**必要**，在初始化之后**调用`doCheckVersion`之前**，否则不生效，返回本次检查更新或下载的结果)
 > **setCheckerCallback(@NonNull CheckerCallback checkerCallback)**
 >回调方法
-> onVersionCheckSuccess(boolean installAble, String msg)   
+> onVersionCheckSuccess(boolean installAble, String msg)
 installAble = true 表示有新版本且已完成下载完成 msg = apk文件路径
 installAble = false 表示没有新版本
 > onVersionCheckError(String msg)
@@ -28,7 +36,7 @@ installAble = false 表示没有新版本
 3.添加下载回调：(非必要，在初始化之后**调用`doCheckVersion`之前**，否则不生效,返回下载详细过程)
 > **setDownloadCallback(DownloadCallback downloadCallback)**
 > 回调方法
-> onPreExecute)   
+> onPreExecute)
 下载开始之前
 > onProgressUpdate(int contentLength, int rev, float progress)
 下载进度  `contentLength = 文件总长度， rev = 已下载的长度， progress = 进度百分比`
