@@ -12,7 +12,7 @@ public class VersionResponse implements Parcelable {
 
 /**
  * appName : intercom
- * downloadUrl : http://47.97.160.96:8089/cpsFirmware/downloadFirmware?versionNo=1901051&appName=intercom
+ * downloadUrl : xxxxxxxxxxxxxxxx
  * versionCode : 1901051
  * describe : 更新会话层
  */
