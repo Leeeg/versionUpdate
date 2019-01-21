@@ -88,6 +88,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
                 contentLength = connection.getContentLength();
                 Log.d(TAG, "doInBackground : contentLength = " + contentLength);
                 if (file.exists()) {
+                    Log.d(TAG, "doInBackground : fileLength = " + file.length());
                     if (offset == file.length() && offset == contentLength) {
                         Log.d(TAG, "doInBackground : the " + fileName + " is existed and valid, go to install");
                         total = offset;
@@ -164,6 +165,7 @@ public class DownloadAsyncTask extends AsyncTask<String, Integer, Integer> {
             if (null != mMd5 && !mMd5.isEmpty() && mMd5.equals(md5)){
                 downloadResult.success(file.getPath());
             }else {
+                file.delete();
                 downloadResult.failed("download failed !   the file was corruptive , you can try to checkUpdate again !");
             }
 
