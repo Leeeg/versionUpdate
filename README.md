@@ -6,16 +6,8 @@
 **library for android app to check update and download the apk file**
 
 #### Installation
-project.gradle
-```
-maven {
-            url  "https://dl.bintray.com/leeeg/android"
-        }
-```
-app.gradle
-```
-implementation 'com.lee.versioncheck:versioncheck:1.0.5'
-```
+
+> implementation 'com.lee.versioncheck:versioncheck:1.0.6'
 
 #### VersionList
 - 1.0.4 检查更新并后台下载  下载完成后统一回调结果
