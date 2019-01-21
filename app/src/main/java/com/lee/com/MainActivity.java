@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initVersionChacker() {
-        String VERSION_CHECK_URL = "http://47.97.160.32:8089/api/checkVersion";
+        String VERSION_CHECK_URL = ""; // your api of checkUodate
         VersionChecker.getInstance().init(this, "ctyon", VERSION_CHECK_URL);
     }
 
