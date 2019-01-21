@@ -31,7 +31,7 @@ android {
 }
 
 // 项目引用的版本号，比如compile 'com.yanzhenjie:andserver:1.0.1'中的1.0.1就是这里配置的。
-version = "1.0.5"
+version = "1.0.6"
 
 //根据Library名称生存jar包到build目录下
 task makeJar(type: Copy) {

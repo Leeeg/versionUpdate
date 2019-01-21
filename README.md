@@ -17,6 +17,11 @@ app.gradle
 implementation 'com.lee.versioncheck:versioncheck:1.0.5'
 ```
 
+#### VersionList
+- 1.0.4 检查更新并后台下载  下载完成后统一回调结果
+- 1.0.5 添加下载过程中的回调，详细见 `DownloadCallback`
+- 1.0.6 允许重复调用 `init` 
+
 #### API
 1.初始化(**必要**，最好使用全局唯一Context且只初始化一次):
 > **VersionChecker init(Context context, String baseName, String url)**
@@ -133,8 +138,3 @@ installAble = false 表示没有新版本
 ```
 
 #### Contribution
-
-1. Fork the repository
-2. Create Feat_xxx branch
-3. Commit your code
-4. Create Pull Request

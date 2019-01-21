@@ -58,9 +58,9 @@ public class VersionChecker {
         if (null == mContext) {
             this.mContext = context;
         }
-        if (null == contain){
+//        if (null == contain){
             setContain(new Contain(baseName, url));
-        }
+//        }
         return getInstance();
     }
 
